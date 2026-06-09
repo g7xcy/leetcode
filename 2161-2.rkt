@@ -1,0 +1,7 @@
+(define/contract (pivot-array nums pivot)
+  (-> (listof exact-integer?) exact-integer? (listof exact-integer?))
+  (let-values ([(lt rest)
+                (partition (lambda (x) (< x pivot)) nums)])
+    (let-values ([(eq gt)
+                  (partition (lambda (x) (= x pivot)) rest)])
+      (append lt eq gt))))
